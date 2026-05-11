@@ -21,7 +21,7 @@ const schema = z.object({
   place: z.string().min(2, "Zadej město nebo lokalitu"),
   when: z.string().optional(),
   message: z.string().min(10, "Krátký popis (alespoň 10 znaků)"),
-  consent: z.literal(true, {
+  consent: z.boolean().refine((v) => v === true, {
     message: "Souhlas je povinný",
   }),
 });
